@@ -76,14 +76,14 @@ body {
 
 #soundButton{
     display: inline;
+    border: none;
     position: relative;
     --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOn.png");
     --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOff.png");
     background: var(--bg_Off);
     background-size: 100%;
-    border: none;
     margin-left: 90%;
-    top: -25%;
+    transform: translateY(-300%);
     z-index: 1;
 }
 
