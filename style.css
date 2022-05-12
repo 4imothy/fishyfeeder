@@ -62,7 +62,20 @@ body {
     font-weight: bold;
 }
 
+#startButton {
+    display: inline;
+    border: none;
+    position: relative;
+    --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStart.png");
+    --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStartHover.png");
+    background: var(--bg_Off);
+    background-size: 100%;
+    transform: translateY(60%);
+    z-index: 1;
+}
+
 #soundButton{
+    display: inline;
     position: relative;
     --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOn.png");
     --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOff.png");
@@ -71,6 +84,7 @@ body {
     border: none;
     margin-left: 90%;
     top: -25%;
+    z-index: 1;
 }
 
 @keyframes getConsumed {
@@ -122,18 +136,6 @@ body {
 
 #gameElements {
     display: none;
-}
-
-#startButton {
-    display: inline;
-    border: none;
-    position: relative;
-    --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStart.png");
-    --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStartHover.png");
-    background: var(--bg_Off);
-    background-size: 100%;
-    transform: translateY(60%);
-    z-index: 1;
 }
 
 #directions {
