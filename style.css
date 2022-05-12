@@ -48,17 +48,18 @@ body {
 }
 
 #currentScore {
-    text-align: left;
     position: relative;
-    margin-top: -25px;
-    font-family: URW Chancery L, cursive;
+    text-align: left;
+    margin-top: -2%;
+    font-weight: bold;
 }
 
 #highScores{
-    position: fixed;
+    position: relative;
     text-align: left;
-    margin-left: 76%;
-    font-family: URW Chancery L, cursive;
+    margin-left: 101%;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 #soundButton{
@@ -69,7 +70,7 @@ body {
     background-size: 100%;
     border: none;
     margin-left: 90%;
-    top: -10%;
+    top: -25%;
 }
 
 @keyframes getConsumed {
