@@ -26,9 +26,9 @@ var hungryFish = [];
 var numberHungryFish;
 var time;
 
-var gameOver;
 var numberDestroyed;
 var wasFishFed;
+var gameOver;
 
 var newHeight;
 var newWidth;
@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('orientationchange', resizeGame, false);
     resizeGame();
     loadScores();
+    //if you declare this above creates bug with click to start hovering strange
+    gameOver = true;
     console.log("done loading");
 });
 
@@ -56,10 +58,12 @@ document.onkeydown = function (e) {
     var input = e.key.toLowerCase();
     //change space
     if (input == ' ') {
-        resizeGame();
-        startGame();
-        if (soundOn) {
-            sfx.fed.play();
+        if (gameOver) {
+            resizeGame();
+            startGame();
+            if (soundOn) {
+                sfx.fed.play();
+            }
         }
     }
     //change sound
@@ -148,7 +152,7 @@ function resizeGame() {
     document.getElementById("title").style.marginTop = "-11%";
 
     //resize scores
-    var fontSize = (17/1152) * newWidth;
+    var fontSize = (17 / 1152) * newWidth;
     document.getElementById("currentScore").style.fontSize = fontSize + "px";
     document.getElementById("highScores").style.fontSize = fontSize + "px";
 
@@ -270,10 +274,12 @@ function resizeGame() {
 }
 
 startButton.onclick = function () {
-    resizeGame();
-    startGame();
-    if (soundOn) {
-        sfx.fed.play();
+    if (gameOver) {
+        resizeGame();
+        startGame();
+        if (soundOn) {
+            sfx.fed.play();
+        }
     }
 }
 
@@ -646,19 +652,15 @@ function updateCharacter() {
     //the character doesn't move at all 
     if (pressed["w"] || pressed["arrowup"]) {
         y++;
-        //moveUp();
     }
     if (pressed["s"] || pressed["arrowdown"]) {
         y--;
-        //moveDown();
     }
     if (pressed["d"] || pressed["arrowright"]) {
         x++;
-        //moveRight();
     }
     if (pressed["a"] || pressed["arrowleft"]) {
         x--;
-        //moveLeft();
     }
     //change orientation of chracter
     if (x > 0 && y > 0) {
@@ -713,6 +715,19 @@ function moveRight() {
 }
 
 function moveUp() {
+    if (parseInt(characterCSS.getPropertyValue("top")) + 2 * characterHeight >= parseInt(game.style.borderWidth)) {
+        character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
+    }
+}
+
+function moveDown() {
+    if (parseInt(characterCSS.getPropertyValue("top")) - 8 * characterHeight <= (parseInt(game.style.borderWidth))) {
+        character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
+    }
+}
+/*
+function moveUp() {
+    console.log(characterCSS.getPropertyValue("top"));
     if (parseInt(characterCSS.getPropertyValue("top")) + (parseInt(characterCSS.height)) >= 3 * parseInt(game.style.borderWidth)) {
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
     }
@@ -722,6 +737,7 @@ function moveDown() {
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
     }
 }
+*/
 
 
 function endGame() {
@@ -797,17 +813,17 @@ function addHighScores() {
     }
 }
 
-function loadScores(){
+function loadScores() {
     console.log("here");
     var scores = document.getElementById("highScores");
-    if(localStorage.getItem('hs1') == null){
+    if (localStorage.getItem('hs1') == null) {
         return;
     }
-    if(localStorage.getItem('hs2') == null){
+    if (localStorage.getItem('hs2') == null) {
         scores.innerHTML = "<p>Your High Scores:</p>1. " + localStorage.getItem('hs1') + "<br>2.<br>3.";
         return;
     }
-    if(localStorage.getItem('hs3') == null){
+    if (localStorage.getItem('hs3') == null) {
         scores.innerHTML = "<p>Your High Scores:</p>1. " + localStorage.getItem('hs1') + "<br>2. " + localStorage.getItem('hs2') + "<br>3.";
         return;
     }
