@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: lightblue;
+}
+
+#version {
+    display: inline;
+    font-family: "Times New Roman";
+    color: lightCyan;
+}
+
+#game {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    border: 5px solid black;
+    --bg_1: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281797/fishyfeederres/background.jpg");
+    --bg_2: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background0.jpg");
+    --bg_3: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background10.jpg");
+    --bg_4: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background20.jpg");
+    --bg_5: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background30.jpg");
+    --bg_6: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background40.jpg");
+    --bg_7: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background50.jpg");
+    --bg_8: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background60.jpg");
+    --bg_9: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background70.jpg");
+    --bg_10: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background80.jpg");
+    --bg_11: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/background90.jpg");
+    --bg_12: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281798/fishyfeederres/background100.jpg");
+    background-image: var(--bg_1), var(--bg_2);
+    background-size: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+#title {
+    position: relative;
+    background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/logo.png");
+    background-size: 100%;
+    margin-left: 10%;
+}
+
+#currentScore {
+    text-align: left;
+    position: relative;
+    margin-top: -25px;
+    font-family: URW Chancery L, cursive;
+}
+
+#highScores{
+    position: fixed;
+    text-align: left;
+    margin-left: 76%;
+    font-family: URW Chancery L, cursive;
+}
+
+#soundButton{
+    position: relative;
+    --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOn.png");
+    --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/soundOff.png");
+    background: var(--bg_Off);
+    background-size: 100%;
+    border: none;
+    margin-left: 90%;
+    top: -10%;
+}
+
+@keyframes getConsumed {
+    0% {
+        background-image: var(--bg_2), var(--bg_3);
+    }
+
+    10% {
+        background-image: var(--bg_3), var(--bg_4);
+    }
+
+    20% {
+        background-image: var(--bg_4), var(--bg_5);
+    }
+
+    30% {
+        background-image: var(--bg_5), var(--bg_6);
+    }
+
+    40% {
+        background-image: var(--bg_6), var(--bg_7);
+    }
+
+    50% {
+        background-image: var(--bg_7), var(--bg_8);
+    }
+
+    60% {
+        background-image: var(--bg_8), var(--bg_9);
+    }
+
+    70% {
+        background-image: var(--bg_9), var(--bg_10);
+    }
+
+    80% {
+        background-image: var(--bg_10), var(--bg_11);
+    }
+
+    90% {
+        background-image: var(--bg_11), var(--bg_12);
+    }
+
+    100% {
+        background-image: var(--bg_12), var(--bg_1);
+    }
+}
+
+
+#gameElements {
+    display: none;
+}
+
+#startButton {
+    display: inline;
+    border: none;
+    position: relative;
+    --bg_Off: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStart.png");
+    --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStartHover.png");
+    background: var(--bg_Off);
+    background-size: 100%;
+    top: 45%;
+    transform: translateY(-65%);
+}
+
+#directions {
+    transform: translateY(-150%);
+    background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/directionsHorizontalNoWhite.png");
+    background-size: 100%;
+}
+
+#beginResult {
+    display: none;
+    position: relative;
+    background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/youFedNoBackGround.png");
+    background-size: 100%;
+    transform: translate(15%, -100%);
+}
+
+.numberOne {
+    display: flex;
+    position: relative;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: yellow;
+}
+
+.numberTwo {
+    display: flex;
+    position: relative;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: orange;
+}
+
+.numberThree {
+    display: flex;
+    position: relative;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: red;
+}
+
+#endResult {
+    display: none;
+    position: relative;
+    background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652284339/fishyfeederres/fishNiceNoBackground.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.character {
+    /* makes tight fit to the image */
+    border-radius: 50%;
+    position: relative;
+    background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/mainCharFish.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.evilFish {
+    display: inline-block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.hitBox {
+    /*The size corresponds with evil fish sizes */
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.hungryFish {
+    display: inline-block;
+    animation: fadeToRed 11s;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+@keyframes fadeToRed {
+    from {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}
+
+.enemyText {
+    text-align: center;
+    display: inline-block;
+    font: Bold;
+    color: white;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
