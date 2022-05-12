@@ -702,6 +702,7 @@ function updateCharacter() {
 };
 
 //these top/left are defind relative to game div
+/*
 function moveLeft() {
     if (parseInt(characterCSS.getPropertyValue("left")) >= parseInt(game.style.borderWidth)) {
         character.style.left = parseInt(characterCSS.getPropertyValue("left")) - characterSpeed + "px";
@@ -713,7 +714,30 @@ function moveRight() {
         character.style.left = parseInt(characterCSS.getPropertyValue("left")) + characterSpeed + "px";
     }
 }
+*/
+function moveLeft() {
+    if (parseInt(character.offsetLeft) >= 0) {
+        character.style.left = parseInt(characterCSS.getPropertyValue("left")) - characterSpeed + "px";
+    }
+}
+function moveRight() {
+    if (parseInt(character.offsetLeft) <= parseInt(game.style.width) - parseInt(characterWidth)) {
+        character.style.left = parseInt(characterCSS.getPropertyValue("left")) + characterSpeed + "px";
+    }
+}
+function moveUp() {
+    if (parseInt(character.offsetTop) >= parseInt(character.style.height) / 4) {
+        console.log("move");
+        character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
+    }
+}
 
+function moveDown() {
+    if (parseInt(character.offsetTop) <= parseInt(game.style.height) - 1.3 * parseInt(character.style.height)) {
+        character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
+    }
+}
+/*
 function moveUp() {
     if (parseInt(characterCSS.getPropertyValue("top")) + 2 * characterHeight >= parseInt(game.style.borderWidth)) {
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
@@ -725,6 +749,7 @@ function moveDown() {
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
     }
 }
+*/
 /*
 function moveUp() {
     console.log(characterCSS.getPropertyValue("top"));
@@ -814,7 +839,6 @@ function addHighScores() {
 }
 
 function loadScores() {
-    console.log("here");
     var scores = document.getElementById("highScores");
     if (localStorage.getItem('hs1') == null) {
         return;
