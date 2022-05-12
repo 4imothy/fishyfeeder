@@ -217,8 +217,8 @@ function resizeGame() {
 
         var changeConstX = (50 / 750) * (newWidth);
         var changeConstY = (-90 / 400) * newHeight
-        var transX = (265 / 750) * (newWidth);
-        var transY = (-130 / 750) * (newWidth);
+        var transX = (260 / 750) * (newWidth);
+        var transY = (-175 / 750) * (newWidth);
 
         number1 = document.getElementById("number1");
         number1.style.width = numberW + "px";
@@ -264,12 +264,12 @@ function resizeGame() {
             check = 1;
 
         if (check == 3)
-            document.getElementById("endResult").style.transform = "translate(150%, -500%)";
+            document.getElementById("endResult").style.transform = "translate(150%, -550%)";
         if (check == 2)
-            document.getElementById("endResult").style.transform = "translate(132%, -500%)";
+            document.getElementById("endResult").style.transform = "translate(132%, -550%)";
         //document.getElementById("endResult").style.transform = "translate(" + leftShift2 + "%, -170%);"
         if (check == 1)
-            document.getElementById("endResult").style.transform = "translate(112%, -500%)";
+            document.getElementById("endResult").style.transform = "translate(112%, -550%)";
     }
 }
 
@@ -737,32 +737,6 @@ function moveDown() {
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
     }
 }
-/*
-function moveUp() {
-    if (parseInt(characterCSS.getPropertyValue("top")) + 2 * characterHeight >= parseInt(game.style.borderWidth)) {
-        character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
-    }
-}
-
-function moveDown() {
-    if (parseInt(characterCSS.getPropertyValue("top")) - 8 * characterHeight <= (parseInt(game.style.borderWidth))) {
-        character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
-    }
-}
-*/
-/*
-function moveUp() {
-    console.log(characterCSS.getPropertyValue("top"));
-    if (parseInt(characterCSS.getPropertyValue("top")) + (parseInt(characterCSS.height)) >= 3 * parseInt(game.style.borderWidth)) {
-        character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
-    }
-}
-function moveDown() {
-    if (parseInt(characterCSS.getPropertyValue("top")) + (2 * parseInt(characterCSS.height)) <= (newHeight) - (2 * parseInt(game.style.borderWidth))) {
-        character.style.top = parseInt(characterCSS.getPropertyValue("top")) + characterSpeed + "px";
-    }
-}
-*/
 
 
 function endGame() {
@@ -774,7 +748,7 @@ function endGame() {
         //remove all child
         startButton.style.display = "inline";
         game.style.animation = "";
-        startButton.style.top = "65%";
+        startButton.style.transform = "translateY(80%)";
         document.getElementById("beginResult").style.display = "flex";
         displayNumbers();
         document.getElementById("endResult").style.display = "flex";
@@ -894,7 +868,7 @@ function displayNumbers() {
     var changeConstX = (50 / 750) * (newWidth);
     var changeConstY = (-90 / 400) * newHeight;
     var transX = (265 / 750) * (newWidth);
-    var transY = (-130 / 750) * (newWidth);
+    var transY = (-175 / 750) * (newWidth);
 
     number1 = document.getElementById("number1");
     number1.style.width = numberW + "px";
@@ -941,12 +915,12 @@ function displayNumbers() {
         check = 1;
 
     if (check == 3)
-        document.getElementById("endResult").style.transform = "translate(150%, -500%)";
+        document.getElementById("endResult").style.transform = "translate(150%, -550%)";
     if (check == 2)
-        document.getElementById("endResult").style.transform = "translate(132%, -500%)";
+        document.getElementById("endResult").style.transform = "translate(132%, -550%)";
     //document.getElementById("endResult").style.transform = "translate(" + leftShift2 + "%, -170%);"
     if (check == 1)
-        document.getElementById("endResult").style.transform = "translate(112%, -500%)";
+        document.getElementById("endResult").style.transform = "translate(112%, -550%)";
 
     //put the first number in number one
     //this only works for score up to 999

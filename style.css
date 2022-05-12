@@ -132,8 +132,8 @@ body {
     --bg_On: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/clickToStartHover.png");
     background: var(--bg_Off);
     background-size: 100%;
-    top: 45%;
-    transform: translateY(-65%);
+    transform: translateY(60%);
+    z-index: 1;
 }
 
 #directions {
@@ -147,7 +147,7 @@ body {
     position: relative;
     background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281801/fishyfeederres/youFedNoBackGround.png");
     background-size: 100%;
-    transform: translate(15%, -100%);
+    transform: translate(15%, -150%);
 }
 
 .numberOne {
