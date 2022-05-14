@@ -93,6 +93,7 @@ document.onkeydown = function (e) {
         pressed[input] = e.type == "keydown";
 
 }
+
 document.onkeyup = function (e) {
     var input = e.key.toLowerCase();
     if (!gameOver)
@@ -116,10 +117,13 @@ function resizeGame() {
         newWidth = newHeight * widthToHeight;
         game.style.height = newHeight + 'px';
         game.style.width = newWidth + 'px';
+        //character speed
+        characterSpeed = (7 / 750) * (newWidth);
     } else {
         newHeight = newWidth / widthToHeight;
         game.style.width = newWidth + 'px';
         game.style.height = newHeight + 'px';
+        characterSpeed = (7 / 400) * (newHeight);
     }
     //brings to center
     game.style.marginTop = (-newHeight / 2) + 'px';
@@ -138,8 +142,6 @@ function resizeGame() {
     hitBoxL = (20 / 750) * (newWidth);
     //set for text
     eTextF = (15 / 750) * (newWidth);
-    //character speed
-    characterSpeed = (7 / 750) * (newWidth);
 
     //resize border width
     var bWidth = (5 / 1152) * newWidth;
@@ -777,28 +779,16 @@ function updateCharacter() {
     }
 };
 
-//these top/left are defind relative to game div
-/*
-function moveLeft() {
-    if (parseInt(characterCSS.getPropertyValue("left")) >= parseInt(game.style.borderWidth)) {
-        character.style.left = parseInt(characterCSS.getPropertyValue("left")) - characterSpeed + "px";
-    }
-}
-
-function moveRight() {
-    if (parseInt(characterCSS.getPropertyValue("left")) + characterWidth <= (newWidth) - parseInt(game.style.borderWidth)) {
-        character.style.left = parseInt(characterCSS.getPropertyValue("left")) + characterSpeed + "px";
-    }
-}
-*/
 function moveLeft() {
     if (parseInt(character.offsetLeft) >= 0) {
-        character.style.left = parseInt(characterCSS.getPropertyValue("left")) - characterSpeed + "px";
+        //character.style.left = parseInt(characterCSS.getPropertyValue("left")) - characterSpeed + "px";
+        character.style.left = character.offsetLeft - characterSpeed + "px";
     }
 }
 function moveRight() {
     if (parseInt(character.offsetLeft) <= parseInt(game.style.width) - parseInt(characterWidth)) {
-        character.style.left = parseInt(characterCSS.getPropertyValue("left")) + characterSpeed + "px";
+        //character.style.left = parseInt(characterCSS.getPropertyValue("left")) + characterSpeed + "px";
+        character.style.left = character.offsetLeft + characterSpeed + "px";
     }
 }
 function moveUp() {
