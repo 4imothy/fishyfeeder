@@ -54,7 +54,7 @@ body {
     font-weight: bold;
 }
 
-#highScores{
+#highScores {
     position: relative;
     text-align: left;
     margin-left: 101%;
@@ -74,7 +74,7 @@ body {
     z-index: 1;
 }
 
-#soundButton{
+#soundButton {
     display: inline;
     border: none;
     position: relative;
@@ -191,6 +191,13 @@ body {
     background-image: url("https://res.cloudinary.com/dmr8ozkfj/image/upload/v1652281799/fishyfeederres/mainCharFish.png");
     background-size: 100%;
     background-repeat: no-repeat;
+}
+
+.charHitBox {
+    border-radius: 100%;
+    display: inline;
+    opacity: 0;
+    position: absolute;
 }
 
 .evilFish {

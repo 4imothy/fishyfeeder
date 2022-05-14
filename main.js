@@ -2,6 +2,7 @@ var character;
 var characterCSS;
 var characterWidth;
 var characterHeight;
+var curDirect;
 var hFishH;
 var hFishW;
 var eTextF;
@@ -542,7 +543,7 @@ function updateFish() {
     var wasCollision = false;
     while (i < hungryFish.length) {
         //do this only once
-        if (collide(hungryFish[i])) {
+        if (collide(hungryFish[i]) && accCollide(hungryFish[i])) {
             if (soundOn) {
                 sfx.fed.play();
             }
@@ -607,26 +608,93 @@ function collide(currentFish) {
     //make this hitbox work better with diagonal
     //if the top is above the bottom return false
     //if any are true return false
-    /*
-    c= document.createElement("div");
-    c.style.top = charRect.top + 'px';
-    c.style.bottom = charRect.bottom + 'px';
-    c.style.left = charRect.left + 'px';
-    c.style.left = charRect.left + 'px';
-    c.style.width = characterWidth;
-    c.style.height = characterHeight;
-    c.style.backgroundColor = "red";
-    c.style.display = "inline";
-    c.style.position = "relative";
-    gameElements.appendChild(c);
-    */
-
     return !(
         charRect.top > fishRect.bottom ||
         charRect.right < fishRect.left ||
         charRect.bottom < fishRect.top ||
         charRect.left > fishRect.right
     );
+}
+
+function accCollide(currentEnemy) {
+    chb = document.createElement('div');
+    chb.style.width = parseInt(character.style.height) / 1.5 + 'px';
+    chb.style.height = parseInt(character.style.height) / 1.5 + 'px';
+    chb.classList.add('charHitBox');
+    //apply a bunch of transformation to make it correct placement
+    switch (curDirect) {
+        case 'right':
+            chb.style.top = character.offsetTop + parseInt(character.style.height) / 4 + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 2 + 'px';
+            break;
+        case 'left':
+            chb.style.top = character.offsetTop + parseInt(character.style.height) / 4 + 'px';
+            chb.style.left = character.offsetLeft + 'px';
+            break;
+        case 'down':
+            chb.style.top = character.offsetTop + parseInt(character.style.height) / 1.5 + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 3.75 + 'px';
+            break;
+        case 'up':
+            chb.style.top = character.offsetTop - parseInt(character.style.height) / 5 + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 3 + 'px';
+            break;
+        case 'upleft':
+            chb.style.top = character.offsetTop + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 6 + 'px';
+            break;
+        case 'downleft':
+            chb.style.top = character.offsetTop + parseInt(character.style.height) / 2 + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 5 + 'px';
+            break;
+        case 'upright':
+            chb.style.top = character.offsetTop + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 2 + 'px';
+            break;
+        case 'downright':
+            chb.style.top = character.offsetTop + parseInt(character.style.height) / 2 + 'px';
+            chb.style.left = character.offsetLeft + parseInt(character.style.width) / 2 + 'px';
+            break;
+    }
+    gameElements.appendChild(chb);
+
+    var radius = parseInt(chb.style.width) / 2;
+    //find what edge to compare against
+    //if the distance is less than the radius 
+    //return true else false
+    var chbX = chb.offsetLeft + radius;
+    var chbY = chb.offsetTop + radius;
+    var hbX = currentEnemy.hitBox.offsetLeft;
+    var hbY = currentEnemy.hitBox.offsetTop;
+    //this declarations are for when it is inside
+    var edgeX = chbX;
+    var edgeY = chbY;
+    //find  x edge to compare to 
+    if (chbX < hbX) {
+        //left edge
+        edgeX = hbX;
+    } else if (chbX > hbX + hitBoxL) {
+        //right edge
+        edgeX = hbX + hitBoxL;
+    }
+    //find y edge to compare to 
+    if (chbY < hbY) {
+        //top edge
+        edgeY = hbY;
+    } else if (chbY > hbY + hitBoxL) {
+        //bottom edge
+        edgeY = hbY + hitBoxL;
+    }
+
+    gameElements.removeChild(chb);
+    var dx = chbX - edgeX;
+    var dy = chbY - edgeY;
+    var distance = Math.sqrt((dx * dx) + (dy * dy));
+    if (distance <= radius) {
+        //meaning overlap
+        return true;
+    }
+    return false;
 }
 
 function fadeOutFish(fish) {
@@ -665,38 +733,46 @@ function updateCharacter() {
     //change orientation of chracter
     if (x > 0 && y > 0) {
         character.style.transform = "rotate(315deg)";
+        curDirect = "upright";
         moveUp();
         moveRight();
     }
     else if (x < 0 && y > 0) {
         character.style.transform = "scaleX(-1) rotate(315deg)"
+        curDirect = "upleft";
         moveUp();
         moveLeft();
     }
     else if (x > 0 && y < 0) {
         character.style.transform = "rotate(45deg)"
+        curDirect = "downright";
         moveDown();
         moveRight();
     }
     else if (x < 0 && y < 0) {
         character.style.transform = "scaleX(-1) rotate(45deg)";
+        curDirect = "downleft";
         moveDown();
         moveLeft();
     }
     else if (x > 0) {
         character.style.transform = "rotate(0deg)";
+        curDirect = "right";
         moveRight();
     }
     else if (x < 0) {
         character.style.transform = "scaleX(-1)";
+        curDirect = "left";
         moveLeft();
     }
     else if (y > 0) {
         character.style.transform = "rotate(270deg)";
+        curDirect = "up";
         moveUp();
     }
     else if (y < 0) {
         character.style.transform = "rotate(90deg)";
+        curDirect = "down";
         moveDown();
     }
 };
@@ -727,7 +803,6 @@ function moveRight() {
 }
 function moveUp() {
     if (parseInt(character.offsetTop) >= parseInt(character.style.height) / 4) {
-        console.log("move");
         character.style.top = parseInt(characterCSS.getPropertyValue("top")) - characterSpeed + "px";
     }
 }
