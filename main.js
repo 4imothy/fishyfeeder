@@ -8,6 +8,8 @@ var hFishW;
 var eTextF;
 var hitBoxL;
 
+console.log(hello);
+
 const game = document.getElementById("game");
 const gameCSS = window.getComputedStyle(game);
 const startButton = document.getElementById("startButton");
